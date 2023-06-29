@@ -14,7 +14,7 @@ import {
 } from '../helper/localStorage';
 import { useSelector } from 'react-redux';
 
-type User = {
+export type User = {
   userId: string;
 };
 
@@ -31,6 +31,7 @@ type ProfileData = {
   github: string;
   followers: Array<string>;
   following: Array<string>;
+  followingTags: string[];
 };
 
 type AuthContextValue = User | null;
@@ -41,7 +42,7 @@ type AuthContextProviderProps = {
   children: ReactNode;
 };
 
-const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
+export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useState<User | null>(
     getItemFromLocalStorage<User>('user') || null
   );
@@ -81,5 +82,3 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 };
 
 export const useAuth = (): AuthContextValue => useContext(AuthCtx);
-
-export default AuthContextProvider;

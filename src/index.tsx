@@ -6,7 +6,7 @@ import App from './App';
 import store from './store';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import theme from './theme/theme';
-import AuthContextProvider from './context/auth';
+import { AuthContextProvider } from './context/auth';
 import ErrorBoundary from './utils/ErrorBoundary';
 import './styles/App.css';
 

@@ -10,7 +10,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 import useClickOutside from '../hooks/useClickOutside';
 
 interface TagData {
-  tagName: string;
+  tagName: string | any;
   isCustomTag?: boolean;
 }
 

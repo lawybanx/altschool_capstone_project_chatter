@@ -11,6 +11,7 @@ type ProfileData = {
   github: string;
   followers: Array<string>;
   following: Array<string>;
+  followingTags: Array<string>;
 };
 
 export const getUserProfileData = (

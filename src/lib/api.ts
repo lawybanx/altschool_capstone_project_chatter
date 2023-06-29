@@ -29,6 +29,8 @@ type PostData = {
   title: string;
   tags: string[];
   MDEValue: string;
+  draft?: boolean;
+  updated?: boolean;
 };
 
 type ProfileData = {
@@ -83,6 +85,7 @@ export const createPost = async (postData: PostData): Promise<void> => {
     ...postData,
     createdAt: serverTimestamp(),
     comments: [],
+    draft: false,
     likes: [],
     readTime: Math.ceil(postData.MDEValue.trim().split(/\s+/).length / 200),
   });
