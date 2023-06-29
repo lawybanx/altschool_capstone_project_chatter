@@ -17,10 +17,10 @@ import { db, storage } from '../config/firebase';
 import { increment } from 'firebase/firestore';
 
 type UserData = {
-  name: string;
-  username: string;
+  name: string | null | undefined;
+  username: any;
   profile: string | null;
-  createdAt: string;
+  createdAt: string | undefined;
 };
 
 type PostData = {
