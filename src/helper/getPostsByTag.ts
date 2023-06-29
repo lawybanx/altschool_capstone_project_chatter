@@ -9,7 +9,10 @@ type Post = {
   tags: Tag[];
   MDEValue: string;
 };
-export const getPostsByTag = (tagNames: string[], posts: Post[]): Post[] => {
+export const getPostsByTag = (
+  tagNames: string[] | any,
+  posts: Post[]
+): Post[] => {
   return posts.filter(post => {
     for (const tagObj of post.tags) {
       if (tagNames.includes(tagObj.tagName)) {

@@ -3,7 +3,7 @@ import { Box, useColorModeValue } from '@chakra-ui/react';
 import defaultProfile from '../../assets/images/default_profile.webp';
 
 type CustomAvatarProps = {
-  profile: string | null;
+  profile: string | any;
   size: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
 };
@@ -11,7 +11,7 @@ type CustomAvatarProps = {
 const CustomAvatar = ({ profile, size, onClick }: CustomAvatarProps) => {
   return (
     <Box
-      boxSize={`${size}px`}
+      boxSize={size}
       backgroundImage={`url(${profile || defaultProfile})`}
       rounded='full'
       backgroundPosition='center'

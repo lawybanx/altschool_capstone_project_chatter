@@ -32,18 +32,19 @@ type PostData = {
 };
 
 type ProfileData = {
-  username: string;
-  profile: null | object;
-  name: string;
-  createdAt: string;
-  id: string;
-  twitter: string;
-  website: string;
-  location: string;
-  email: string;
-  github: string;
-  followers: string[];
-  following: string[];
+  username?: string;
+  profile?: null | object;
+  name?: string;
+  createdAt?: string;
+  id?: string;
+  twitter?: string;
+  website?: string;
+  location?: string;
+  email?: string;
+  github?: string;
+  followers?: string[];
+  following?: string[];
+  followingTags?: string[];
 };
 
 type CommentData = {
@@ -115,7 +116,7 @@ export const deletePost = async (postId: string): Promise<void> => {
 
 export const updateProfileData = async (
   profileData: ProfileData,
-  userId: string
+  userId: string | any
 ): Promise<void> => {
   const docRef = doc(db, 'users', userId);
 
