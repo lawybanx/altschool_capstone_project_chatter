@@ -33,7 +33,7 @@ type PostData = {
 
 type ProfileData = {
   username?: string;
-  profile?: null | object;
+  profile?: null | string;
   name?: string;
   createdAt?: string;
   id?: string;
