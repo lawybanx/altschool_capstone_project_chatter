@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, useEffect } from 'react';
+import { Box } from '@chakra-ui/react';
+import FallbackSpinner from './shared/utils/FallbackSpinner';
+import ConfigRoute from './shared/containers/ConfigRoute';
+import useModifiedData from './shared/hooks/useModifiedData';
+import { useAuth } from './context/auth';
+import { useNavigate } from 'react-router-dom';
 
-function App() {
+const App = () => {
+  useModifiedData();
+  const user = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/create-account');
+    }
+  }, [user, navigate]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <Suspense fallback={<FallbackSpinner />}>
+        <ConfigRoute />
+      </Suspense>
+    </Box>
   );
-}
+};
 
 export default App;
