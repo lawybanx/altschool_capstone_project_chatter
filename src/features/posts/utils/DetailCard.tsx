@@ -25,7 +25,7 @@ interface DetailCardProps {
   id: string;
   currentUserId: string;
   likes: string[];
-  comments: string[];
+  comments: number;
   bookmark: string[];
   alreadyBookmarked: boolean;
   alreadyLiked: boolean;
@@ -92,7 +92,7 @@ const DetailCard: React.FC<DetailCardProps> = ({
         <HStack>
           <HStack>
             <Box>
-              <SecondaryBtn disabled={updatingLike} onClick={() => handleLikes}>
+              <SecondaryBtn disabled={updatingLike} onClick={handleLikes}>
                 {alreadyLiked ? (
                   <AiFillHeart size={25} color={colorTertiary} />
                 ) : (
@@ -108,8 +108,8 @@ const DetailCard: React.FC<DetailCardProps> = ({
           <HStack>
             <AiOutlineMessage size={25} color={colorTertiary} />
             <Text fontSize='md' fontWeight='medium'>
-              {comments.length} comment
-              {comments.length > 1 || comments.length === 0 ? 's' : ''}
+              {comments} comment
+              {comments > 1 || comments === 0 ? 's' : ''}
             </Text>
           </HStack>
         </HStack>

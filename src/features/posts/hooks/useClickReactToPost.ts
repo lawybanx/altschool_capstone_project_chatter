@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth, User } from '../../../context/auth';
 import { updatePostReaction } from '../../../lib/api';
 
-type ReactionArr = string[] | undefined;
+type ReactionArr = string[] | any;
 
 const useClickReactToPost = (
   reactionArr: ReactionArr,
@@ -24,7 +24,7 @@ const useClickReactToPost = (
     }
 
     const transformedReact = prevReactionArr.includes(userId)
-      ? prevReactionArr.filter(id => id !== userId)
+      ? prevReactionArr.filter((id: string) => id !== userId)
       : [...prevReactionArr, userId];
 
     updatePostReaction({ [reactType]: transformedReact }, postId)

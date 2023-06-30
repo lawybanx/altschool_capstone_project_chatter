@@ -22,6 +22,7 @@ import DetailCard from '../utils/DetailCard';
 import MarkdownRenderer from '../utils/MarkdownRenderer';
 import Discussion from '../../comments/containers/Discussion';
 import AllComments from '../../comments/containers/AllComments';
+import { calcTotalDiscussion } from '../../comments/utils/calculateTotal';
 
 interface DetailContentProps {
   postDetail: any;
@@ -145,14 +146,16 @@ const DetailContent: React.FC<DetailContentProps> = ({
           id={postDetail.id}
           currentUserId={user?.userId ?? ''}
           likes={postDetail.likes}
-          comments={postDetail.comments}
+          comments={calcTotalDiscussion(postDetail.comments)}
           bookmark={postDetail.bookmark}
           alreadyBookmarked={postDetail.bookmark?.includes(user?.userId)}
           alreadyLiked={postDetail.likes?.includes(user?.userId)}
         />
       </Box>
       <MarkdownRenderer content={postDetail.MDEValue} />
-      {postDetail.MDEValue.length > 0 && (
+      {postDetail.MDEValue.length <= 1 ? (
+        ''
+      ) : (
         <Box pt='2rem' px='1rem'>
           <DetailCard
             tags={postDetail.tags}
@@ -160,7 +163,7 @@ const DetailContent: React.FC<DetailContentProps> = ({
             id={postDetail.id}
             currentUserId={user?.userId ?? ''}
             likes={postDetail.likes}
-            comments={postDetail.comments}
+            comments={calcTotalDiscussion(postDetail.comments)}
             bookmark={postDetail.bookmark}
             alreadyBookmarked={postDetail.bookmark?.includes(user?.userId)}
             alreadyLiked={postDetail.likes?.includes(user?.userId)}

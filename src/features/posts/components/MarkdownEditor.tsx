@@ -16,7 +16,7 @@ interface MarkdownEditorProps {
   isSubmitting: boolean;
   setUploadingImg: (uploading: boolean) => void;
   h?: string;
-  showHtml: boolean;
+  showHtml?: boolean;
 }
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = ({

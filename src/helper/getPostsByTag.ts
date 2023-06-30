@@ -25,12 +25,25 @@ interface Post {
   comments: CommentData[];
 }
 interface CommentData {
-  value: string;
-  replies: Record<string, any>;
-  createdAt: string;
-  userId: string;
   commentId: string;
+  value: string;
+  createdAt: { seconds: number; nanoseconds: number };
+  edited?: boolean;
+  editedAt?: { seconds: number; nanoseconds: number };
   likes: string[];
+  userId: string;
+  replies: Record<string, Reply>;
+}
+
+interface Reply {
+  commentId: string;
+  value: string;
+  createdAt: { seconds: number; nanoseconds: number };
+  edited?: boolean;
+  editedAt: { seconds: number; nanoseconds: number };
+  likes: string[];
+  userId: string;
+  repliedUserId: string;
 }
 
 export const getPostsByTag = (

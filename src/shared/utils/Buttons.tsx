@@ -22,6 +22,7 @@ export const PrimaryBtn: React.FC<PrimaryBtnProps> = ({
   display,
   m,
   onClick,
+  disabled,
   type,
   bg,
   isLoading,
@@ -39,6 +40,7 @@ export const PrimaryBtn: React.FC<PrimaryBtnProps> = ({
       w={w}
       type={type}
       display={display}
+      isDisabled={disabled}
       isLoading={isLoading}
       loadingText={isLoadingText}
       m={m}
@@ -62,10 +64,11 @@ interface SecondaryBtnProps extends ButtonProps {
     base: string;
     md: string;
   };
-  onClick?: () => void;
+  onClick?: Function | any;
   color?: string;
   isLoading?: boolean;
   isLoadingText?: string;
+  disabled?: boolean;
   size?: string;
   m?: string;
   p?: string;
@@ -80,6 +83,7 @@ export const SecondaryBtn: React.FC<SecondaryBtnProps> = ({
   color,
   isLoading,
   isLoadingText,
+  disabled,
   size,
   m,
   p,
@@ -99,6 +103,7 @@ export const SecondaryBtn: React.FC<SecondaryBtnProps> = ({
       isLoading={isLoading}
       loadingText={isLoadingText}
       m={m}
+      isDisabled={disabled}
       size={size}
       type='button'
       _hover={{
@@ -156,7 +161,7 @@ export const LightBtn: React.FC<LightBtnProps> = ({
 };
 
 interface ReactionButtonProps extends ButtonProps {
-  value: string;
+  value?: string | number;
   text?: string;
   onClick?: () => void;
   isLoading?: boolean;
@@ -211,6 +216,7 @@ export const BtnRed: React.FC<BtnRedProps> = ({ children, ...props }) => {
       _hover={{ bg: 'rgb(185 28 28)' }}
       color='rgb(255 255 255)'
       fontWeight='400'
+      loadingText='Deleting...'
     >
       {children}
     </Button>

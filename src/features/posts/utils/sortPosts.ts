@@ -29,12 +29,25 @@ interface Post {
 }
 
 interface CommentData {
-  value: string;
-  replies: Record<string, any>;
-  createdAt: string;
-  userId: string;
   commentId: string;
+  value: string;
+  createdAt: { seconds: number; nanoseconds: number };
+  edited?: boolean;
+  editedAt?: { seconds: number; nanoseconds: number };
   likes: string[];
+  userId: string;
+  replies: Record<string, Reply>;
+}
+
+interface Reply {
+  commentId: string;
+  value: string;
+  createdAt: { seconds: number; nanoseconds: number };
+  edited?: boolean;
+  editedAt: { seconds: number; nanoseconds: number };
+  likes: string[];
+  userId: string;
+  repliedUserId: string;
 }
 
 export const sortPosts = (
@@ -55,8 +68,8 @@ export const sortPosts = (
         );
         return bDate.getTime() - aDate.getTime();
       });
-
       break;
+
     case 'followingTags':
       if (followingTags.length === 0) {
         // Randomize posts if there are no following tags
@@ -65,6 +78,7 @@ export const sortPosts = (
         sortedPosts = getPostsByTag(followingTags, posts);
       }
       break;
+
     case 'top':
       sortedPosts = posts
         .map(post => {
@@ -77,6 +91,7 @@ export const sortPosts = (
             b.totalLikes + b.totalComments - (a.totalLikes + a.totalComments)
         );
       break;
+
     default:
       sortedPosts = posts.sort((a, b) => {
         const aDate = new Date(
@@ -87,19 +102,8 @@ export const sortPosts = (
         );
         return bDate.getTime() - aDate.getTime();
       });
-
       break;
   }
 
   return sortedPosts;
 };
-
-// Example usage:
-const posts: Post[] = [
-  // Add your post objects here
-];
-
-const followingTags: string[] = [];
-
-const sortedPosts = sortPosts('latest', posts, followingTags);
-console.log(sortedPosts);

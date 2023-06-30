@@ -32,7 +32,7 @@ interface PostItemProps {
   profile?: string;
   coverImg?: string;
   id: string | any;
-  createdAt: {
+ createdAt: {
     seconds: number;
     nanoseconds: number;
   };
